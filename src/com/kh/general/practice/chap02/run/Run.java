@@ -8,7 +8,10 @@ public class Run {
 		LoopPractice lp = new LoopPractice();
 //		lp.practice2();
 //		lp.practice5();
-		lp.practice6();
+//		lp.practice6();
+//		lp.practice13();
+//		lp.practice14();
+		lp.practice12();
 
 	}
 
