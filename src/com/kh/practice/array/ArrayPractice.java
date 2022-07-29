@@ -23,6 +23,7 @@ public class ArrayPractice {
 	
 	public void practice3() {
 		Scanner sc = new Scanner(System.in);
+		
 		System.out.print("양의 정수 : ");
 		int i = sc.nextInt();
 		
@@ -41,11 +42,28 @@ public class ArrayPractice {
 	
 	public void practice5() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("문자열 : ");
-		String str = sc.nextLine();
-		System.out.println("문자");
-		char cha = str.charAt(0);
 		
+		System.out.print("문자열 : ");
+		String str = sc.nextLine();
+		
+		System.out.print("문자 : ");
+		char cha = sc.nextLine().charAt(0);
+		
+		char[] chArr = new char[str.length()];
+		int count = 0;
+		
+		System.out.print(str + "에 " + cha + "가 존재하는 위치(인덱스) : ");
+		
+		for(int i = 0; i < str.length(); i++) {
+			chArr[i] = str.charAt(i);
+			
+			if(cha == chArr[i]) {
+				count++;
+				System.out.print(i + " ");
+			}
+		} 
+		System.out.println();
+		System.out.println(cha + "개수 : " +count);
 	}
 	
 	public void practice6() {
@@ -100,10 +118,10 @@ public class ArrayPractice {
 			int num = sc.nextInt();
 			
 		    if(num < 3 || num % 2 == 0) {
-			System.out.println("다시 입력하세요 .");
+			System.out.println("다시 입력하세요.");
 		    } else { 
 		    	int[] arr = new int[num];
-				int before = (num / 2) + 1; 
+				int before = (num / 2); 
 				int after = before - 1;
 		    
 			if(num >= 3 && num % 2 == 1) {
@@ -117,6 +135,28 @@ public class ArrayPractice {
 				break;
 				}
 		    }
+		}
+	}
+	
+	public void practice9() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("치킨 이름을 입력하세요 : ");
+		String name = sc.nextLine();
+		
+		String[] menu = {"양념", "후라이드", "간장", "파닭"};
+		
+		boolean check = false;
+		for(int i = 0; i < menu.length; i++) {
+			if(menu[i].equals(name)) { // equals 비교시 String과 String 비교 arr[i] = index에 저장된 값 arr = 배열 그 자체
+				check = true;
+				break;
+			}
+		}
+		
+		if(check) {
+			System.out.println(name + "치킨 배달 가능");
+		} else {
+			System.out.println(name + "치킨은 없는 메뉴입니다.");
 		}
 	}
 }
