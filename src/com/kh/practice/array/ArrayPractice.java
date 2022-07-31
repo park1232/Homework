@@ -146,6 +146,7 @@ public class ArrayPractice {
 		String[] menu = {"양념", "후라이드", "간장", "파닭"};
 		
 		boolean check = false;
+		
 		for(int i = 0; i < menu.length; i++) {
 			if(menu[i].equals(name)) { // equals 비교시 String과 String 비교 arr[i] = index에 저장된 값 arr = 배열 그 자체
 				check = true;
@@ -157,6 +158,124 @@ public class ArrayPractice {
 			System.out.println(name + "치킨 배달 가능");
 		} else {
 			System.out.println(name + "치킨은 없는 메뉴입니다.");
+		}
+	}
+	
+	public void practice10() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("주민등록번호(-포함) : ");
+		String ide = sc.nextLine();
+		
+		char[] cha = new char[ide.length()];
+		
+		for(int i = 0; i < ide.length(); i++) {
+			cha[i] = ide.charAt(i);
+		}
+		
+		char[] copyCha = new char[cha.length];
+		
+		for(int i = 0; i < copyCha.length; i++) {
+			if(i <= 7) {
+				copyCha[i] = cha[i];
+			} else {
+				copyCha[i] = '*';
+			}
+			System.out.print(copyCha[i]);
+		} 		
+	}
+	
+	public void practice11() {
+		int[] arr = new int[10];
+		
+		for(int i = 0; i < arr.length; i++) {
+			if(i <= 9) {
+			arr[i] = (int)(Math.random() * 10 + 1);
+			System.out.print(arr[i] + " ");
+			} else {
+				arr[i] = (int)(Math.random() * 10 + 1);
+				System.out.print(arr[i]);
+			}
+		}
+	}
+	
+	public void practice12() {
+		int[] arr = new int[10];
+		
+		int max = 10;
+		int min = 1;
+		
+		for(int i = 0; i < arr.length; i++) {
+			arr[i] = (int)(Math.random()* 10 + 1);
+			System.out.print(arr[i] + " ");
+			if(arr[i] == max) {
+				max = arr[i];
+			} else {
+				min = arr[i];
+			}
+		}
+		System.out.println();
+		System.out.println("최대값 : " + max);
+		System.out.println("최소값 : " + min);
+	}
+	
+	public void practice13() { // 물어볼 것 
+		int[] arr = new int[10];
+		
+		for(int i = 0; i < arr.length;) {
+			int random = (int)(Math.random()* 10 + 1);
+			boolean check = false;
+			
+			for(int j = 0; j < i; j++) {
+				if(arr[j] == random) {
+					check = true;
+					break;
+				}
+			}
+			
+			if(!check) {
+				arr[i] = random;
+				System.out.println(arr[i] + " ");
+				i++;
+			}
+		}
+	}
+	
+	public void practice14() {
+		int[] arr = new int[6];
+		
+		for(int i = 0; i < arr.length;) {
+			int random = (int)(Math.random() * 45 + 1);
+			boolean check = false;
+			
+			for(int j = 0; j < i; j++) {
+				if(j == random) {
+					check = true;
+					break;
+				}
+			}
+			
+			if(!check) {
+				arr[i] = random;
+				i++;
+			}
+		}
+	}
+
+	public void practice15() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("문자열 : ");
+		String str = sc.nextLine();
+		
+		char[] arr = new char[str.length()];
+		
+		for(int i = 0; i < arr.length; i++) {
+			arr[i] = str.charAt(i);
+			boolean check = false;
+			
+			for(int j = 0; j < i; j++) {
+				if(j == arr[i]);
+				
+			}
 		}
 	}
 }
