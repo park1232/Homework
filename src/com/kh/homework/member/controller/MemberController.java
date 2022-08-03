@@ -44,6 +44,7 @@ public class MemberController {
 		m[SIZE].getPassword();
 		
 		m[SIZE].setPassword(password);
+		
 		return true;
 	}
 	
@@ -52,6 +53,7 @@ public class MemberController {
 		m[SIZE].getName();
 		
 		m[SIZE].setName(name);
+		
 		return true;
 	}
 	
@@ -60,22 +62,27 @@ public class MemberController {
 		m[SIZE].getEmail(); 
 		
 		m[SIZE].setEmail(email);
+		
 		return true;
 	}
 	
 	public boolean delete(String id) {
-		if(m[SIZE].getId().equals(id)) {
-			
-		}
+		for(int i = 0; i < m.length; i++) {
+			if(m[i].getId().equals(id)) {
+				m[i] = null;
+			}
+		} 
+		
+		return true;
 	}
 	
 	public void delete() {
-		
+		for(int i = 0; i < m.length; i++) {
+			m[i] = null;
+		} 
 	}
 	
 	public Member[] printAll() {
 		return m;
 	}
-	
-	
 }
