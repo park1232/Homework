@@ -189,7 +189,7 @@ public class LoopPractice {
 					} else if (j != 1 || j != num) {
 						System.out.print(" ");
 					}
-			}
+				}
 			System.out.println();
 			}
 		}

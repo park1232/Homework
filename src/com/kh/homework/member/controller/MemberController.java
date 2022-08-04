@@ -7,69 +7,128 @@ public class MemberController {
 	public static final int SIZE = 10;
 	
 	public int existMemberNum() {
-		return SIZE;
+		int count = 0;
+		
+		for(int i = 0; i < m.length; i++) {
+			Member member = m[i];
+			if(member != null) {
+				count++;
+			} else if(member == null) {
+				break;
+			}
+		}
+		
+		return count;
 	}
 	
 	public boolean checkId(String inputId) {
-		return false;
+		for(int i = 0; i < m.length; i++) {
+			if(m[i].getId() == inputId) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public void insertMember(String id, String name, String password, String email, char gender, int age) {
-		m[0] = new Member("aaaaa", "박신우", "aa", "aaa@aaa.aaa", 'F', 33);
-		m[1] = new Member("bbbbb", "강고결", "bb", "bbb@bbb.bbb", 'M', 34);
-		m[2] = new Member("ccccc", "강나눔", "cc", "ccc@ccc.ccc", 'M', 28);
-		m[3] = new Member("ddddd", "도대담", "dd", "ddd@ddd.ddd", 'M', 35);
-		m[4] = new Member("eeeee", "류라라", "ee", "eee@eee.eee", 'F', 17);
-		m[5] = new Member("fffff", "문미미", "ff", "fff@fff.fff", 'F', 20);
-		m[6] = new Member("ggggg", "박보배", "gg", "ggg@ggg.ggg", 'M', 26);
-		m[7] = new Member("hhhhh", "송성실", "hh", "hhh@hhh.hhh", 'M', 41);
-		m[8] = new Member("iiiii", "윤예의", "ii", "iii@iii.iii", 'F', 28);
-		m[9] = new Member("jjjjj", "정재주", "jj", "jjj@jjj.jjj", 'M', 23);
+		int num = existMemberNum();
+		m[num] = new Member();
+		
 	}
 	
 	public String searchId(String id) {
-		return m[SIZE].getId();
+		for(int i = 0; i < m.length; i++) {
+			if(m[i].getId() == id) {
+				System.out.println("찾으신 회원 조회 결과입니다.");
+				m[i].inform();
+				break;
+			} else if(m[i].getId() != id) {
+				System.out.println("검색 결과가 없습니다.");
+			}
+		}
+		return id;
 	}
 	
 	public Member[] searchName(String name) {
-		return m; 
+		Member[] samName = null;
+		for(int i = 0; i < m.length; i++) {
+
+			if(m[i].getName() == name) {
+				System.out.println("찾으신 회원 조회 결과입니다.");
+				samName = new Member[i];
+				samName[i] = m[i].inform();
+			} else if(m[i].getName() != name) {
+				System.out.println("검색 결과가 없습니다.");
+			}
+		}
+		return samName;
 	}
 	
 	public Member[] searchEmail(String email) {
-		return m; 
+		Member[] samEmail = null;
+		for(int i = 0; i < m.length; i++) {
+			
+			if(m[i].getEmail() == email) {
+				System.out.println("찾으신 회원 조회 결과입니다.");
+				samEmail = new Member[i];
+				samEmail[i] = m[i].inform();
+			} else if(m[i].getEmail() != email) {
+				System.out.println("검색 결과가 없습니다.");
+			}
+		}
+		return samEmail;
 	}
 	
 	public boolean updatePassword(String id, String password) {
-		m[SIZE].getId();
-		m[SIZE].getPassword();
-		
-		m[SIZE].setPassword(password);
-		
-		return true;
+		for(int i = 0; i < m.length; i++) {
+			if(m[i].getId() == id) {
+				m[i].setPassword(password);
+				System.out.println("수정이 성공적으로 되었습니다.");
+				break;
+			} else if(m[i].getId() != id) {
+				System.out.println("존재하지 않는 아이디입니다.");
+				return false;
+			}
+		}
+		return true; 
 	}
 	
 	public boolean updateName(String id, String name) {
-		m[SIZE].getId();
-		m[SIZE].getName();
-		
-		m[SIZE].setName(name);
-		
-		return true;
+		for(int i = 0; i < m.length; i++) {
+			if(m[i].getId() == id) {
+				m[i].setName(name);
+				System.out.println("수정이 성공적으로 되었습니다.");
+				break;
+			} else if(m[i].getId() != id) {
+				System.out.println("존재하지 않는 아이디입니다.");
+				return false;
+			}
+		}
+		return true; 
 	}
 	
 	public boolean updateEmail(String id, String email) {
-		m[SIZE].getId(); 
-		m[SIZE].getEmail(); 
-		
-		m[SIZE].setEmail(email);
-		
-		return true;
+		for(int i = 0; i < m.length; i++) {
+			if(m[i].getId() == id) {
+				m[i].setEmail(email);
+				System.out.println("수정이 성공적으로 되었습니다.");
+				break;
+			} else if(m[i].getId() != id) {
+				System.out.println("검색 결과가 없습니다.");
+				return false;
+			}
+		}
+		return true; 
 	}
 	
-	public boolean delete(String id) {
+	public boolean deleteMember(String id) {
 		for(int i = 0; i < m.length; i++) {
-			if(m[i].getId().equals(id)) {
+			if(m[i].getId() == id) {
 				m[i] = null;
+				System.out.println("성공적으로 삭제하였습니다.");
+				break;
+			} else if (m[i].getId() != id) {
+				System.out.println("존재하지 않는 아이디입니다.");
 			}
 		} 
 		
@@ -79,6 +138,7 @@ public class MemberController {
 	public void delete() {
 		for(int i = 0; i < m.length; i++) {
 			m[i] = null;
+			System.out.println("성공적으로 삭제하였습니다.");
 		} 
 	}
 	
