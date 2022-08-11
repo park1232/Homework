@@ -14,7 +14,7 @@ public class CookBook extends Book{
 		this.coupon = coupon;
 	}
 	
-	public boolean getCoupon() {
+	public boolean isCoupon() {
 		return coupon;
 	}
 	
