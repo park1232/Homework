@@ -1,4 +1,4 @@
-ppackage com.kh.practice.map.view;
+package com.kh.practice.map.view;
 
 import java.util.Scanner;
 
@@ -63,22 +63,24 @@ public class MemberMenu {
 	}
 	
 	public void joinMembership() {
-		System.out.print("아이디 : ");
-		String id = sc.nextLine();
-		
-		System.out.print("비밀번호 : ");
-		String password = sc.nextLine();
-		
-		System.out.print("이름 : ");
-		String name = sc.next();
-		
-		Member m = new Member(password, name);
-		boolean result = mc.joinMembership(id, m);
-		
-		if(result == true) {
-			System.out.println("성공적으로 회원가입 완료하였습니다.");
-		} else {
-			System.out.println("중복된 아이디입니다. 다시 입력해주세요.");
+		while(true) {
+			System.out.print("아이디 : ");
+			String id = sc.next();
+			
+			System.out.print("비밀번호 : ");
+			String password = sc.next();
+			
+			System.out.print("이름 : ");
+			String name = sc.next();
+			
+			Member m = new Member(password, name);
+			boolean result = mc.joinMembership(id, m);
+			
+			if(result == true) {
+				System.out.println("성공적으로 회원가입 완료하였습니다.");
+			} else {
+				System.out.println("중복된 아이디입니다. 다시 입력해주세요.");
+			}
 		}
 	}
 	

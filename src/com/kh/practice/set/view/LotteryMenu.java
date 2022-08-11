@@ -38,32 +38,31 @@ public class LotteryMenu {
 			case 9: System.out.println("프로그램 종료");
 					return;
 			}
-			break;
 		}
 	}
 	
 	public void insertObject() {
 		while(true) {
 			System.out.println("추첨 대상자를 추가합니다.");
-			System.out.print("이름");
+			System.out.print("이름 : ");
 			String name = sc.next();
 			
-			System.out.print("핸드폰 번호('-')빼고");
+			System.out.print("핸드폰 번호('-')빼고 : ");
 			String phone = sc.next();
 				
 			Lottery l = new Lottery(name, phone);
 			lc.insertObject(l); 
 			
-			if(l.getName() == name) {
+			if(lc.selectAll().contains(name)) {
 				System.out.println("중복된 대상입니다. 다시 입력하세요");
 			}
 			System.out.println("더 추가하시겠습니까?(Y/N) : ");
 			char ans = sc.next().charAt(0);
 			if(ans == 'Y') {
-				insertObject();
+
 			} else if(ans == 'N') {
-				System.out.println(lc. + "명 추가 완료되었습니다.");
-				break;
+				System.out.println(lc.selectAll().size() + "명 추가 완료되었습니다.");
+				mainMenu();
 			} else {
 				System.out.println("Y나 N 중에서 대답해주세요.");
 			}
@@ -74,7 +73,7 @@ public class LotteryMenu {
 		if(lc.selectAll().isEmpty()) {
 			System.out.println("추첨 대상자가 없습니다.");
 		} else {
-			lc.selectAll();
+			System.out.println(lc.selectAll());
 		}
 	}
 	
