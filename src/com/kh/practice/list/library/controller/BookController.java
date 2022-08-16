@@ -25,25 +25,21 @@ public class BookController {
 	
 	public ArrayList<Book> searchBook(String keyword) {
 		ArrayList<Book> searchList = new ArrayList<Book>();
-		int count = 0;
 		
 		for(int i = 0; i < bookList.size(); i++) {
 			if(bookList.get(i).getTitle().contains(keyword)) {
-				searchList.add(bookList.get(i));
+				searchList.add(bookList.get(i)); 
 			}
 		}
 		return searchList;
 	}
-	
 	public Book deleteBook(String title, String author) {
 		Book removeBook = new Book();
 		removeBook = null;
 		
 		for(int i = 0; i < bookList.size(); i++) {
 			if(bookList.get(i).getTitle().equals(title) && bookList.get(i).getAuthor().equals(author)) {
-				removeBook = bookList.remove(i); 
-				bookList.remove(i);
-				break;
+				removeBook = bookList.remove(i);
 			}
 		}
 		return removeBook;

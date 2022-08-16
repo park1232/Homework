@@ -21,7 +21,7 @@ public class BookMenu {
 			System.out.println("4. 도서 삭제");
 			System.out.println("9. 종료");
 			System.out.print("메뉴 번호 선택 : ");
-			int num = sc.nextInt();
+			int num = Integer.parseInt(sc.nextLine());
 			
 			switch(num) {
 			case 1: insertBook();
@@ -40,9 +40,7 @@ public class BookMenu {
 					return;
 					
 			default : System.out.println("잘못 입력하였습니다. 다시 입력해주세요");
-					  mainMenu();
 			}
-			break;
 		}
 	}
 	
@@ -50,13 +48,13 @@ public class BookMenu {
 		System.out.println("===== 새 도서 추가 =====");
 		System.out.println("책 정보를 입력해주세요.");
 		System.out.print("도서 명 : ");
-		String title = sc.next();
+		String title = sc.nextLine();
 		
 		System.out.print("저자 명 : ");
-		String author = sc.next();
+		String author = sc.nextLine();
 		
 		System.out.print("장르(1.인문 / 2.과학 / 3.외국어 / 4.기타 : ");
-		int select = sc.nextInt();
+		int select = Integer.parseInt(sc.nextLine());
 		
 		String category = null;
 		
@@ -75,13 +73,14 @@ public class BookMenu {
 		}
 		
 		System.out.print("가격 : ");
-		int price = sc.nextInt();
+		int price = Integer.parseInt(sc.nextLine());
 		
 		Book book = new Book(title, author, category, price);
 		bc.insertBook(book);
 	}
 	
 	public void selectList() {
+		System.out.println("존재하는 도서가 없습니다.");
 		ArrayList<Book> bookList = bc.selectList();
 		
 		if(bookList.isEmpty()) {
@@ -96,7 +95,7 @@ public class BookMenu {
 	public void searchBook() {
 		System.out.println("===== 도서 검색 =====");
 		System.out.print("검색 키워드 : ");
-		String keyWord = sc.next();
+		String keyWord = sc.nextLine();
 		
 		ArrayList<Book> searchList = bc.searchBook(keyWord);
 		
@@ -104,7 +103,7 @@ public class BookMenu {
 			System.out.println("검색 결과가 없습니다.");
 		} else {
 			for(int i = 0; i < searchList.size(); i++) {
-				System.out.println(searchList.toString());
+				System.out.println(searchList.get(i));
 			}
 		}
 	}

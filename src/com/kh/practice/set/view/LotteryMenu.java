@@ -1,6 +1,7 @@
 package com.kh.practice.set.view;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import com.kh.practice.set.controller.LottreyController;
@@ -37,6 +38,7 @@ public class LotteryMenu {
 					break;
 			case 9: System.out.println("프로그램 종료");
 					return;
+			default : System.out.println("잘못 입력하셨습니다. 다시 입력해주세요");
 			}
 		}
 	}
@@ -51,18 +53,19 @@ public class LotteryMenu {
 			String phone = sc.next();
 				
 			Lottery l = new Lottery(name, phone);
-			lc.insertObject(l); 
+			boolean result = lc.insertObject(l); 
 			
-			if(lc.selectAll().contains(name)) {
+			if(!result) {
 				System.out.println("중복된 대상입니다. 다시 입력하세요");
+				continue;
 			}
-			System.out.println("더 추가하시겠습니까?(Y/N) : ");
+			System.out.print("더 추가하시겠습니까?(Y/N) : ");
 			char ans = sc.next().charAt(0);
 			if(ans == 'Y') {
 
 			} else if(ans == 'N') {
 				System.out.println(lc.selectAll().size() + "명 추가 완료되었습니다.");
-				mainMenu();
+				return;
 			} else {
 				System.out.println("Y나 N 중에서 대답해주세요.");
 			}
@@ -70,10 +73,15 @@ public class LotteryMenu {
 	}
 	
 	public void selectAll() {
-		if(lc.selectAll().isEmpty()) {
+		HashSet<String> set = lc.selectAll();
+		
+		if(set.isEmpty()) {
 			System.out.println("추첨 대상자가 없습니다.");
 		} else {
-			System.out.println(lc.selectAll());
+			Iterator<String> it = set.iterator();
+			while(it.hasNext()) {
+				System.out.println(it.next());
+			}
 		}
 	}
 	
@@ -108,7 +116,7 @@ public class LotteryMenu {
 		System.out.print("이름 : ");
 		String name = sc.next();
 		
-		System.out.println("핸드폰 번호('-'빼고) : ");
+		System.out.print("핸드폰 번호('-'빼고) : ");
 		String phone = sc.next();
 		
 		Lottery l = new Lottery(name, phone);

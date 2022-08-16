@@ -3,42 +3,48 @@ package com.kh.practice.set.controller;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Random;
 
 import com.kh.practice.set.model.vo.Lottery;
 
 public class LottreyController {
-	private HashSet<Lottery> lottery = new HashSet<>();
-	private HashSet<Lottery> win = new HashSet<>();
+	private HashSet<String> lottery = new HashSet<>();
+	private HashSet<String> win = new HashSet<>();
 	
 	public boolean insertObject(Lottery l) {
-		lottery.add(l);
-		return lottery.add(l);
+		boolean result = lottery.add(l.toString());
+		
+		return result;
 	}
 	
-	public HashSet<Lottery> selectAll() {
+	public HashSet<String> selectAll() {
 		return lottery;
 	}
 	
 	public boolean deleteObject(Lottery l) {
 		boolean result = lottery.remove(l.toString());
 		
-		if(win != null && result != false) {
+		if(win.isEmpty() && result) {
 			win.remove(l.toString());
 		}
 		return result;
 	}
 	
-	public HashSet<Lottery> winObject() {
-		ArrayList<Lottery> list = new ArrayList<>(lottery);
-			Iterator<Lottery> it = list.iterator();
-			while(it.hasNext()) {
-				win = it.next();
+	public HashSet<String> winObject() {
+		if(lottery.size() < 4) {
+			return null;
+		} else {
+			ArrayList<String> list = new ArrayList<>(lottery);
+			
+			for(int i = 0; i < 4; i++) {
+				int num = (int)(Math.random() * list.size());
+				win.add(list.get(num));
+			}
+			return win;
 		}
 	}
 	
 	public boolean searchWinner(Lottery l) {
-		boolean result = win.contains(l);
+		boolean result = win.contains(l.toString());
 		return result;
 	}
 }
