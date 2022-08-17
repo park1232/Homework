@@ -23,7 +23,7 @@ public class LottreyController {
 	public boolean deleteObject(Lottery l) {
 		boolean result = lottery.remove(l.toString());
 		
-		if(win.isEmpty() && result) {
+		if(!win.isEmpty() && result) {
 			win.remove(l.toString());
 		}
 		return result;
@@ -35,7 +35,7 @@ public class LottreyController {
 		} else {
 			ArrayList<String> list = new ArrayList<>(lottery);
 			
-			for(int i = 0; i < 4; i++) {
+			while(win.size() < 4) {
 				int num = (int)(Math.random() * list.size());
 				win.add(list.get(num));
 			}
